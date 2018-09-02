@@ -1,9 +1,8 @@
 /*
  **************************************************************************************************
- * Sketch : Turns an LED ON/OFF over a bluetooth link using HC-05/HC-06 module
+ * Sketch : Turns an LED and a PIEZO ON/OFF from a web server (to be upload to Arduino Nano)
  * Board  : HACK-NANO
- * Wiring : TXD ->  2
-            RXD ->  3 
+ * Wiring : Connect jumpers in NORMAL mode  
  * Author : Written by Rushikesh Deshmukh for http://www.hack-man.io
  * License: Berkeley Software Distribution (BSD)
  **************************************************************************************************            
@@ -14,7 +13,7 @@
  * Library files
  * ------------------------------------------------------------------------------------------------
  */
- #include<SoftwareSerial.h>
+ 
  
 /*
  * ------------------------------------------------------------------------------------------------
@@ -27,10 +26,10 @@
  * Global declarations
  * ------------------------------------------------------------------------------------------------
  */
- SoftwareSerial mySerial(2, 3); 
- int LED = 6;
- char key;
+ int PIEZO = 5; // label pin 5 as PIEZO  
+ int LED = 6;   // label pin 6 as LED  
 
+ char command;
 /*
  * ------------------------------------------------------------------------------------------------
  * Functions, ISRs
@@ -43,9 +42,9 @@
  * ------------------------------------------------------------------------------------------------
  */
  void setup(){
-    pinMode(LED,OUTPUT);    // set pin 6 as output
-    Serial.begin(9600);     // set serial com at 9600bps                                 
-    mySerial.begin(9600);   // set myserial com at 9600bps
+    pinMode(PIEZO,OUTPUT);    // set pin 5 as output
+    pinMode(LED,OUTPUT);      // set pin 6 as output 
+    Serial.begin(115200);     // set serial com at 115200bps                                
     }
 
 /*
@@ -54,12 +53,24 @@
  * ------------------------------------------------------------------------------------------------
  */
  void loop() {
-  if(mySerial.available()>0){
-    key = mySerial.read();
-    if(key=='1')                // configure button in bluetooth app as '1' to turn ON an LED
+  if(Serial.available() > 0){ 
+    command = Serial.read(); 
+  
+    switch(command){
+    case '0':         // turn LED
       digitalWrite(LED,HIGH);
-    else if(key=='0')            // configure button in bluetooth app as '0' to turn OFF an LED
-      digitalWrite(LED,LOW);
+      break;
+    case '1':         // turn LED
+       digitalWrite(LED,LOW);
+      break;
+    case '2':         // turn PIEZO
+      digitalWrite(PIEZO,HIGH);
+      break;
+    case '3':         // turn PIEZO
+      digitalWrite(PIEZO,LOW);
+      break;
+    default:          // default case
+      break;
     }
-  }
-
+  } 
+ }
