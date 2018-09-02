@@ -18,8 +18,7 @@
 	    11) Reads an LDR and send its value (0-~512) over a RF link
 	    12) Receive an LDR values (0-~512) over a RF link
             13) Turns an LED ON/OFF over a bluetooth link using HC-05/HC-06 module
-	    14) Reads an LDR and send its value (0-~512) over a WiFi link
-	    15) Receive an LDR values (0-~512) over a WiFi link
+	    14) Turns an LED and a PIEZO ON/OFF over a WiFi link
  * NOTE	  : 1) All example codes from Arduino IDE (File->Examples->SD) will work on HACK-NANO board
 	    by making chipSelect=10
 	    2) Download Rtc by Makuna from https://github.com/Makuna/Rtc. Its a feature packed
