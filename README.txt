@@ -19,6 +19,8 @@
 	    12) Receive an LDR values (0-~512) over a RF link
             13) Turns an LED ON/OFF over a bluetooth link using HC-05/HC-06 module
 	    14) Turns an LED and a PIEZO ON/OFF over a WiFi link
+	    15) Menu driven code to test on-board peripherals and uSD card module using Nokia5110 GLCD
+	    and a rotary encoder
  * NOTE	  : 1) All example codes from Arduino IDE (File->Examples->SD) will work on HACK-NANO board
 	    by making chipSelect=10
 	    2) Download Rtc by Makuna from https://github.com/Makuna/Rtc. Its a feature packed
